@@ -12,6 +12,7 @@ import com.example.bian.xin.QingCang3;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.*;
@@ -273,7 +274,7 @@ public class JianKong4 {
                                         return;
                                     }
 
-                                    String msg = "连续2次，有问题！" + personInfo.getString(PrivateConfig.alias) + "，" + position.getSymbol() + "和老师个数不同，应该有" + youLs.multiply(beiShu) + "个，现在有" + you + "个";
+                                    String msg = "连续2次，有问题！" + personInfo.getString(PrivateConfig.alias) + "，" + position.getSymbol() + "和老师个数不同，应该有" + youLs.multiply(beiShu).setScale(3, RoundingMode.HALF_DOWN) + "个，现在有" + you + "个";
 
                                     //先自动减仓
                                     if (you.compareTo(youLs.multiply(beiShu)) > 0) {
@@ -346,7 +347,7 @@ public class JianKong4 {
                                 return;
                             }
 
-                            String msg = personInfo.getString(PrivateConfig.alias) + "应该有" + youLs.multiply(beiShu) + "个" + symbolSideLs + "，现在没有。有问题！";
+                            String msg = personInfo.getString(PrivateConfig.alias) + "应该有" + youLs.multiply(beiShu).setScale(3, RoundingMode.HALF_DOWN) + "个" + symbolSideLs + "，现在没有。有问题！";
                             PrivateConfig.printLog(msg);
                             //有错的话，报警后就return
                             /*Thread.sleep(1000 * 20);
