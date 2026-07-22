@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "OKX 仓位监控 Stalker",
+  "name": "1zhou",
   "version": "1.0.0",
   "description": "精确监控 OKX 带单详情页的实时仓位数据，并自动推送到本地 Java 接口。",
   "permissions": [
@@ -12,7 +12,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://www.okx.com/zh-hans/copy-trading/follow-detail*"
+        "https://www.okx.com/zh-hans/copy-trading/follow-detail/823664FB73B79E41/swap?copyRelId=3680402729632075776"
       ],
       "js": [
         "content.js"

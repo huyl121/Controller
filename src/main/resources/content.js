@@ -109,8 +109,8 @@ setTimeout(() => {
         const coinMatch = text.match(/([A-Z0-9\- \/]+)\s*(永续|交割)/i);
         if (coinMatch) coin = coinMatch[1].trim();
 
-        if (text.includes('多')) direction = 'long';
-        else if (text.includes('空')) direction = 'short';
+        if (text.includes('多') || text.includes('买')) direction = 'long';
+        else if (text.includes('空') || text.includes('卖')) direction = 'short';
 
         const amountMatch = text.match(/持仓量[^\d]*([\d\.]+)/);
         if (amountMatch) amount = amountMatch[1].trim();
@@ -160,7 +160,7 @@ setTimeout(() => {
     }
 
     function sendToBackend(data) {
-      fetch('http://localhost:8186/genDan', {
+      fetch('http://localhost:8181/genDan', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data) 
@@ -170,7 +170,7 @@ setTimeout(() => {
           console.log(`%c[接口调用] 成功推送到后端!`, "color: #00aaff;");
         }
       })
-      .catch(error => console.error(`[接口失败] 无法连接到本地 8186 端口。`));
+      .catch(error => console.error(`[接口失败] 无法连接到本地 8181 端口。`));
     }
   }
 

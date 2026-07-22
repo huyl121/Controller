@@ -61,13 +61,13 @@ public class BizService {
         }
 
         Map<String, Order> newOrders = stringToMap(mapTian);
-        xiaDan(oldOrders, newOrders);
+        xiaDan(oldOrders, newOrders, data);
 
     }
 
 
 
-    public void xiaDan(Map<String, Order> oldOrders, Map<String, Order> newOrders) throws InterruptedException {
+    public void xiaDan(Map<String, Order> oldOrders, Map<String, Order> newOrders, String data)  {
 
         if(diaoYongCount2 > 100){
             diaoYongCount2 = 0;
@@ -156,6 +156,7 @@ public class BizService {
 
 
         if (CollectionUtils.isNotEmpty(orderListNew)) {
+            PrivateConfig.printLog(data);
             //下单
             for (JSONObject person : PrivateConfig.genDan_personInfoList) {
 
