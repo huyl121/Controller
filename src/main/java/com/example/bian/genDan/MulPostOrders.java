@@ -49,7 +49,7 @@ public class MulPostOrders implements Callable {
             }
 
 
-            String msg = Thread.currentThread().getName() + "---下单成功，没有问题！个数为：" + getOrigQty + "---" + PrivateConfig.getCurrentTime();
+            String msg = Thread.currentThread().getName() + "---下单成功，没有问题！个数为：" + getOrigQty + order.getSymbol() + order.getPositionSide() + "---" + PrivateConfig.getCurrentTime();
             PrivateConfig.printLog(msg);
 
         } catch (Exception e) {
