@@ -166,7 +166,7 @@ setTimeout(() => {
     }
 
     function sendToBackend(data) {
-      fetch('http://localhost:8186/genDan', {
+      fetch('http://localhost:8181/genDan', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -176,7 +176,7 @@ setTimeout(() => {
               console.log(`%c[接口调用] 成功推送到后端!`, "color: #00aaff;");
             }
           })
-          .catch(error => console.error(`[接口失败] 无法连接到本地 8186 端口。`));
+          .catch(error => console.error(`[接口失败] 无法连接到本地 8181 端口。`));
     }
   }
 
