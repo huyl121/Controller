@@ -289,12 +289,12 @@ public class JianKong4 {
                                         T5.searchAll(msg);
                                         continue;
                                     }else {
-                                        if ("1".equals(buCang)) {
+                                        if (!"0".equals(buCang)) {
                                             Integer jiaCangCount = personJiaCangMap.get(personInfo.getString(name));
                                             if (jiaCangCount == null) {
                                                 jiaCangCount = 0;
                                             }
-                                            if (jiaCangCount < 3) {//等稳定后，这个次数可以放大
+                                            if (jiaCangCount < Integer.valueOf(buCang)) {//等稳定后，这个次数可以放大
                                                 jiaCangCount++;
                                                 personJiaCangMap.put(personInfo.getString(name), jiaCangCount);
                                                 //自动加仓，向下取整，肯定不能加多了
