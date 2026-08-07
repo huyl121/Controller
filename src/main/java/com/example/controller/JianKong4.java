@@ -171,7 +171,7 @@ public class JianKong4 {
                         String symbolSide = position.getSymbol() + "_" + position.getPositionSide();
                         if (position.getPositionAmt().abs().compareTo(ling) > 0) {
                             if (!hasErrorQingCang(symbolSide)) {
-                                Thread.sleep(1000);
+                                Thread.sleep(10000);
                                 return;
                             }
 
@@ -206,7 +206,7 @@ public class JianKong4 {
                         if (you.abs().compareTo(ling) > 0) {
                             if (!mapTian.containsKey(symbolSide)) {
                                 if (!hasErrorQingCang(symbolSide)) {
-                                    Thread.sleep(1000);
+                                    Thread.sleep(10000);
                                     return;
                                 }
                                 // 先自动平仓解决
@@ -269,8 +269,8 @@ public class JianKong4 {
                                         continue;
                                     }
 
-                                    if (!hasError(symbolSide)) {
-                                        Thread.sleep(1000);
+                                    if (!hasError(symbolSide+youLs.multiply(beiShu).setScale(getXSM(entryLs.getValue().getSymbol())) + you)) {
+                                        Thread.sleep(10000);
                                         return;
                                     }
 
@@ -325,7 +325,7 @@ public class JianKong4 {
 //                                }
                             } else if (symbolSideLs.equals(symbolSide) && you.abs().compareTo(ling) == 0) {
                                 if (!hasError(symbolSideLs)) {
-                                    Thread.sleep(1000);
+                                    Thread.sleep(10000);
                                     return;
                                 }
                                 hasProblem = false;
@@ -343,7 +343,7 @@ public class JianKong4 {
                             }
 
                             if (!hasError(symbolSideLs)) {
-                                Thread.sleep(1000);
+                                Thread.sleep(10000);
                                 return;
                             }
 

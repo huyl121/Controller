@@ -114,6 +114,7 @@ public class PrivateConfig {
     public static final String zhenShiBeiShu = "zhenShiBeiShu";
     public static final String syncRequestClient = "syncRequestClient";
     public static final String spotClient = "spotClient";
+    public static String buZu2019 = "1";
 
     public static BigDecimal ling035;
 
@@ -258,6 +259,9 @@ public class PrivateConfig {
      * @param getOrigQty
      */
     public static void postOrder(SyncRequestClient syncRequestClient, String symbol, String side, String positionSide, String reduceOnly, String getOrigQty) {
+        if(PrivateConfig.ceShi.equals("1")){
+            return;
+        }
         for (int i = 0; i < 1; i++) {
             try {
                 syncRequestClient.postOrder(
@@ -282,24 +286,27 @@ public class PrivateConfig {
                     BigDecimal count = new BigDecimal(getOrigQty);
                     boolean putAgain = false;
                     if(e.getMessage().contains("-2019")){
-                        //保证金不够，调整杠杆买进去
-//                        count = count.multiply(new BigDecimal("0.5")).setScale(PrivateConfig.getXSM(symbol), BigDecimal.ROUND_HALF_UP);
-                        if(PrivateConfig.Leverage4164.contains(symbol)){
-                            syncRequestClient.changeInitialLeverage(symbol, PrivateConfig.LeverageCount4164);
-                        }else {
-                            syncRequestClient.changeInitialLeverage(symbol, 20);
+                        //保证金不够，降低购买数量。1.1*0.9=0.99
+                        count = count.multiply(new BigDecimal(buZu2019)).setScale(PrivateConfig.getXSM(symbol), BigDecimal.ROUND_DOWN);
+                        if("1".equals(buZu2019)) {
+                            //保证金不够，调整杠杆买进去
+                            if (PrivateConfig.Leverage4164.contains(symbol)) {
+                                syncRequestClient.changeInitialLeverage(symbol, PrivateConfig.LeverageCount4164);
+                            } else {
+                                syncRequestClient.changeInitialLeverage(symbol, 20);
+                            }
                         }
 //                        T5.searchAll("保证金不足，看看是否购买成功");
                         Thread.sleep(1000);
                         putAgain = true;
                     } else if(e.getMessage().contains("-4164")) {
-                        if ("1".equals(PrivateConfig.xiaoCangBeiShu)) {
+                        /*if ("1".equals(PrivateConfig.xiaoCangBeiShu)) {
 //                            会存在一个问题，买入的太多，检测时，又自动减仓，没意义，不过这个逻辑已验证是对的，打开后，一定要关闭个数的判断
                             BigDecimal markPrice = syncRequestClient.getMarkPrice(symbol).get(0).getMarkPrice();
                             BigDecimal zuiDiCount = zuiDiMoney.get(symbol).divide(markPrice, getXSM(symbol), BigDecimal.ROUND_UP);
                             count = zuiDiCount;
 //                            count = count.multiply(new BigDecimal(PrivateConfig.xiaoCangBeiShu)).min(zuiDiCount);
-                        }
+                        }*/
                     }
 
                     if(putAgain){
@@ -619,6 +626,9 @@ public class PrivateConfig {
             Leverage4164 = config.getString("Leverage4164");
         }if(config.get("LeverageCount4164") != null){
             LeverageCount4164 = config.getInteger("LeverageCount4164");
+        }
+        if(config.get("buZu2019") != null){
+            buZu2019 = config.getString("buZu2019");
         }
         if(config.get("xiaoCangBeiShu") != null){
             xiaoCangBeiShu = config.getString("xiaoCangBeiShu");
