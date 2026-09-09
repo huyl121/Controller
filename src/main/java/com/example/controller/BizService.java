@@ -48,7 +48,7 @@ public class BizService {
             youXiaoCount = 0;
         }
 
-        if (diaoYongCount1 > 11) {
+        if (diaoYongCount1 > 21) {
             diaoYongCount1 = 0;
             PrivateConfig.printLog("网页跟单:" + this.getCurrentTime());
             PrivateConfig.printLog(data);

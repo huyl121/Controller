@@ -269,7 +269,7 @@ public class JianKong4 {
                                         continue;
                                     }
 
-                                    if (!hasError(symbolSide+youLs.multiply(beiShu).setScale(getXSM(entryLs.getValue().getSymbol())) + you)) {
+                                    if (!hasError(symbolSide+youLs.multiply(beiShu).setScale(getXSM(entryLs.getValue().getSymbol()), BigDecimal.ROUND_DOWN) + you)) {
                                         Thread.sleep(10000);
                                         return;
                                     }
