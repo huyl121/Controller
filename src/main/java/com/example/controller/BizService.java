@@ -50,7 +50,7 @@ public class BizService {
 
         if (diaoYongCount1 > 21) {
             diaoYongCount1 = 0;
-            PrivateConfig.printLog("网页跟单:" + this.getCurrentTime());
+            PrivateConfig.printLog("网页跟单:" + PrivateConfig.getCurrentTime());
             PrivateConfig.printLog(data);
         }
         mapTian = stringToPosition(data);
@@ -164,10 +164,9 @@ public class BizService {
                     for (Order order : orderListNew) {
                         MulPostOrders mulGetAllOrders = new MulPostOrders(person, order);
                         threadPoolExecutor.submit(mulGetAllOrders);//启动一般的线程
-                        //两个账号之间执行的间隔
-                        Thread.sleep(50);
                     }
-
+                    //两个账号之间执行的间隔
+//                    Thread.sleep(0);
                 } catch (Exception e) {
                     PrivateConfig.printLog(e.getMessage());
                     T5.searchAll("连续三次，有问题，关闭软件，重新启动33。" + e.getMessage());
@@ -271,9 +270,5 @@ public class BizService {
     }
 
 
-    public String getCurrentTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return sdf.format(new Date(System.currentTimeMillis()));
-    }
 
 }

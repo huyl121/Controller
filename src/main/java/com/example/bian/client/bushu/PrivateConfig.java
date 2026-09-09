@@ -20,6 +20,8 @@ import org.springframework.util.CollectionUtils;
 import java.io.*;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -701,10 +703,17 @@ public class PrivateConfig {
         }
     }
 
+    //类顶部增加静态常量
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     public static String getCurrentTime() {
+        return LocalDateTime.now().format(FORMATTER);
+    }
+
+    /*public static String getCurrentTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(new Date(System.currentTimeMillis())); // 时间戳转换日期
-    }
+    }*/
 
 
     // 测试用 胡亚龙

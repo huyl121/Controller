@@ -171,54 +171,6 @@ class T6 implements Callable {
     }
 
 
-
-
-    public static String getCurrentTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return sdf.format(new Date(System.currentTimeMillis())); // 时间戳转换日期
-    }
-
-    private static void sendMsg(String txt) throws InterruptedException {
-
-        String[] mottoes = {
-                txt,
-                txt,
-                txt
-        };
-        for (String motto : mottoes) {
-            sendOneMsg(motto);
-        }
-        Thread.sleep(2000);
-
-//        sendOneMsg("[得意]就问你，腻不腻害！");
-    }
-
-    private static void sendOneMsg(String msg) {
-        // 创建Robot对象
-        Robot robot = getRobot();
-        Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
-        // 将字符串复制到剪切板
-        Transferable tText = new StringSelection(msg);
-        clip.setContents(tText, null);
-        // 以下两行按下了ctrl+v，完成粘贴功能
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        // 回车发送
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.delay(2000);
-    }
-
-    private static Robot getRobot(){
-        // 创建Robot对象
-        Robot robot = null;
-        try {
-            robot = new Robot();
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
-        return robot;
-    }
 }
 
 class T7 implements Callable {
@@ -239,11 +191,6 @@ class T7 implements Callable {
         SendEmail.methodMe(txt, PrivateConfig.computer);
 
         return null;
-    }
-
-    public static String getCurrentTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return sdf.format(new Date(System.currentTimeMillis())); // 时间戳转换日期
     }
 
 

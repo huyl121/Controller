@@ -80,9 +80,9 @@ public class BianApplication {
             ThreadPoolExecutor threadPoolExecutor =
                     new ThreadPoolExecutor(5, 5, 10,
                             TimeUnit.SECONDS,
-                            new LinkedBlockingQueue<>(),
+                            new LinkedBlockingQueue<>(100),
                             Executors.defaultThreadFactory(),
-                            new ThreadPoolExecutor.DiscardPolicy());
+                            new ThreadPoolExecutor.AbortPolicy());
             PrivateConfig.threadPoolExecutor = threadPoolExecutor;
 
             //启动监控线程

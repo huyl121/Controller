@@ -436,10 +436,6 @@ public class JianKong4 {
         return true;
     }
 
-    public String getCurrentTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return sdf.format(new Date(System.currentTimeMillis())); // 时间戳转换日期
-    }
 
 }
 
