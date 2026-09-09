@@ -25,8 +25,8 @@ import static com.example.bian.client.bushu.PrivateConfig.*;
 @Service
 public class BizService {
     // 指定单线程池
-    int diaoYongCount1 = 0;
-    int diaoYongCount2 = 0;
+    int diaoYongCount1 = 1000;
+    int diaoYongCount2 = 1000;
 
     int youXiaoCount = 0;
     @Async("singleBizExecutor")
